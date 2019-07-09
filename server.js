@@ -3,8 +3,12 @@ const { Pool } = require('pg');
 const express = require('express');
 const app = express();
 app.set('view engine', 'ejs');
-const connectionString = process.env.DATABASE_URL + '?ssl=true';
-const pool = new Pool({connectionString: connectionString});
+const connectionString = process.env.DATABASE_URL;
+const pool = new Pool({
+  connectionString: connectionString,
+  ssl: true
+})
+pool.connect();
 var sql = 'SELECT * FROM users';
 pool.query(sql, (err, result) => {
 	if (err) {
@@ -13,8 +17,13 @@ pool.query(sql, (err, result) => {
     }
 
 	console.log('Back from DB with result: ');
-	console.log(result.rows);
+	for (let row of result.rows) {
+    console.log(JSON.stringify(row));
+  }
+
+  pool.end();
 });
+
 let port = process.env.PORT;
 if (port === null || port === "" || port === undefined) {
   port = 8000;
@@ -41,4 +50,4 @@ console.log(`Server listening on port ${port}...`);
 
 setInterval(() => {
   console.log(`Server listening on port ${port}...`);
-}, 10000);
+}, 60000);
