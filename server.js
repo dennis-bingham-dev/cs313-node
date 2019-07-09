@@ -1,7 +1,20 @@
-/* DATABASE_URL='postgres://mlralkpqqmnzjd:ce55a91966f89490ca3e143a2a1229733a9a5daa5baf597093a1acf753d6f556@ec2-174-129-227-80.compute-1.amazonaws.com:5432/d3j5ia4jgmtgt4' */
+require('dotenv').config();
+const { Pool } = require('pg');
 const express = require('express');
 const app = express();
 app.set('view engine', 'ejs');
+const connectionString = process.env.DATABASE_URL + '?ssl=true';
+const pool = new Pool({connectionString: connectionString});
+var sql = 'SELECT * FROM users';
+pool.query(sql, (err, result) => {
+	if (err) {
+		console.log("Error in query: ");
+		 return console.log(err);
+    }
+
+	console.log('Back from DB with result: ');
+	console.log(result.rows);
+});
 let port = process.env.PORT;
 if (port === null || port === "" || port === undefined) {
   port = 8000;
