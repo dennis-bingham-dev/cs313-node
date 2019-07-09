@@ -24,10 +24,7 @@ pool.query(sql, (err, result) => {
   pool.end();
 });
 
-let port = process.env.PORT;
-if (port === null || port === "" || port === undefined) {
-  port = 8000;
-}
+let PORT = process.env.PORT || 8000;
 
 app.get('/', (req, res) => {
   res.render('pages/index');
@@ -45,9 +42,10 @@ app.get('/forgotpassword', (req, res) => {
   res.render('pages/forgotpassword');
 });
 
-app.listen(port);
-console.log(`Server listening on port ${port}...`);
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}...`);
 
-setInterval(() => {
-  console.log(`Server listening on port ${port}...`);
-}, 60000);
+  setInterval(() => {
+    console.log(`Server listening on port ${PORT}...`);
+  }, 60000);
+});
