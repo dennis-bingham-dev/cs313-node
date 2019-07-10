@@ -20,7 +20,7 @@ pool.query(sql, (err, result) => {
 
 	console.log('Back from DB with result: ');
 	for (let row of result.rows) {
-    console.log(JSON.stringify(row));
+    console.log(JSON.stringify(row.user_id));
   }
 
   pool.end();
