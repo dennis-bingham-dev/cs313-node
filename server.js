@@ -3,11 +3,13 @@ const { Pool } = require('pg');
 const express = require('express');
 const app = express();
 app.set('view engine', 'ejs');
+app.use(express.json()); // support json encoded bodies
+app.use(express.urlencoded({extended: true})); // support url encoded bodies
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({
   connectionString: connectionString,
   ssl: true
-})
+});
 pool.connect();
 var sql = 'SELECT * FROM users';
 pool.query(sql, (err, result) => {
@@ -44,8 +46,4 @@ app.get('/forgotpassword', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}...`);
-
-  setInterval(() => {
-    console.log(`Server listening on port ${PORT}...`);
-  }, 60000);
 });
