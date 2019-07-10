@@ -2,6 +2,7 @@ require('dotenv').config();
 const { Pool } = require('pg');
 const express = require('express');
 const app = express();
+const http = require('http');
 app.set('view engine', 'ejs');
 app.use(express.json()); // support json encoded bodies
 app.use(express.urlencoded({extended: true})); // support url encoded bodies
@@ -46,4 +47,8 @@ app.get('/forgotpassword', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}...`);
+
+  setInterval(() => {
+    http.get('https://mission-bend-activity-tracker.herokuapp.com/');
+  }, 300000);
 });
