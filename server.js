@@ -47,8 +47,4 @@ app.get('/forgotpassword', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}...`);
-
-  setInterval(() => {
-    http.get('https://mission-bend-activity-tracker.herokuapp.com/');
-  }, 300000);
 });
