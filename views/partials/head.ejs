@@ -94,4 +94,65 @@
         color: #000000;
       }
 
+      /* entire container, keeps perspective */
+      .flip-container {
+        perspective: 1000px;
+      }
+        /* flip the pane when hovered */
+        .flip-container:hover .flipper, .flip-container.hover .flipper {
+          transform: rotateY(180deg);
+        }
+
+      .flip-container, .front, .back {
+        width: 320px;
+        height: 480px;
+      }
+
+      /* flip speed goes here */
+      .flipper {
+        transition: 0.6s;
+        transform-style: preserve-3d;
+
+        position: relative;
+      }
+
+      /* hide back of pane during swap */
+      .front, .back {
+        backface-visibility: hidden;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      /* front pane, placed above back */
+      .front {
+        z-index: 2;
+        /* for firefox 31 */
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        transform: rotateY(0deg);
+        background-color: #0048FF;
+        box-shadow: 5px 5px 10px 1px #0077ff8f;
+        border-radius: 5px;
+        color: #FFFFFF;
+      }
+
+      /* back, initially hidden pane */
+      .back {
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        transform: rotateY(180deg);
+        background: linear-gradient(231deg, #0048ff, #00ff95, #00D619);
+        box-shadow: 5px 5px 10px 1px #00c3ff8f;
+        border-radius: 5px;
+        color: #000000;
+      }
+
   </style>
