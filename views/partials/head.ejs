@@ -19,6 +19,12 @@
     .navbar-inverse .navbar-brand {
       color: #FFFFFF;
     }
+    .navbar-inverse .navbar-toggle {
+      border-color: #008CFF;
+    }
+    .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+      background-color: #00D619;
+    }
     .navbar-inverse .navbar-nav>li>a {
       color: #FFFFFF;
     }
@@ -26,8 +32,8 @@
 
     .margin {margin-bottom: 45px;}
     .bg-1 {
-        background-color: #1abc9c; /* Green */
-        color: #ffffff;
+        background-color: #FFFFFF; /* Green */
+        color: #1abc9c;
       }
     .bg-2 {
         background-color: #474e5d; /* Dark Blue */
@@ -44,6 +50,48 @@
     .container-fluid-1 {
         padding-top: 70px;
         padding-bottom: 70px;
+      }
+      .f-bg {
+        background-color: #FFFFFF;
+      }
+      ul {
+        list-style-type: none;
+      }
+      ul a {
+        text-decoration: none;
+        color: #777777;
+      }
+      ul a:hover {
+        text-decoration: none;
+        color: #1abc9c;
+      }
+      .left-list {
+        float: left;
+        width: 50%;
+      }
+      .right-list {
+        float: right;
+        width: 50%;
+      }
+      .card-container {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        padding-top: 70px;
+        padding-bottom: 70px;
+      }
+      .card {
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 250px;
+        height: 300px;
+        background: linear-gradient(231deg, #0048ff, #00ff95, #00D619);
+        border-radius: 5px;
+        box-shadow: 5px 5px 10px 1px #00c3ff8f;
+        color: #000000;
       }
 
   </style>
