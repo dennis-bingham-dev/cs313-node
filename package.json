@@ -4,8 +4,8 @@
   "description": "node project",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "git add .; git commit -m \"updated by dev\"; git push heroku master; git push github master; ",
+    "serve": "node server.js",
+    "dev": "git add .; git commit -m \"updated by dev command\"; git push heroku master; git push github master; ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dennis Bingham",
