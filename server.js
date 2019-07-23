@@ -6,6 +6,7 @@ const http = require('http');
 app.set('view engine', 'ejs');
 app.use(express.json()); // support json encoded bodies
 app.use(express.urlencoded({extended: true})); // support url encoded bodies
+app.use('/public', express.static('./public/'));
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({
   connectionString: connectionString,
