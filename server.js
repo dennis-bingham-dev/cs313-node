@@ -41,6 +41,10 @@ app.get('/login', (req, res) => {
   res.render('pages/login');
 });
 
+app.post('/login', (req, res) => {
+  res.send('Login attempt made');
+});
+
 app.get('/forgotpassword', (req, res) => {
   res.render('pages/forgotpassword');
 });
