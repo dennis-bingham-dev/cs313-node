@@ -43,7 +43,7 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-  res.send('Login attempt made');
+  res.write('Login attempt made');
 });
 
 app.get('/forgotpassword', (req, res) => {
