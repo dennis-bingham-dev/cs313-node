@@ -1,32 +1,16 @@
 require('dotenv').config();
-const { Pool } = require('pg');
 const express = require('express');
 const app = express();
 const http = require('http');
+const groupController = require('./controllers/groupsController');
+const loginController = require('./controllers/loginController');
+const registerController = require('./controllers/registerController');
+const resetController = require('./controllers/resetController');
+const postController = require('./controllers/postsController');
 app.set('view engine', 'ejs');
 app.use(express.json()); // support json encoded bodies
 app.use(express.urlencoded({extended: true})); // support url encoded bodies
 app.use('/public', express.static('./public/'));
-const connectionString = process.env.DATABASE_URL;
-const pool = new Pool({
-  connectionString: connectionString,
-  ssl: true
-});
-pool.connect();
-var sql = 'SELECT * FROM users';
-pool.query(sql, (err, result) => {
-	if (err) {
-		console.log("Error in query: ");
-		 return console.log(err);
-    }
-
-	console.log('Back from DB with result: ');
-	for (let row of result.rows) {
-    console.log(JSON.stringify(row.user_id));
-  }
-
-  pool.end();
-});
 
 let PORT = process.env.PORT || 8000;
 
@@ -34,21 +18,23 @@ app.get('/', (req, res) => {
   res.render('pages/index');
 });
 
-app.get('/signup', (req, res) => {
-  res.render('pages/signup');
+app.get('/home', (req, res) => {
+  res.send('user has made it to home screen.');
 });
 
-app.get('/login', (req, res) => {
-  res.render('pages/login');
-});
+app.get('/signup', registerController.getRegistered);
+app.post('/signup', registerController.registerUser);
 
-app.post('/login', (req, res) => {
-  console.log('Login attempt made');
-});
+app.get('/login', loginController.getLogin);
+app.post('/login', loginController.userLogin);
 
-app.get('/forgotpassword', (req, res) => {
-  res.render('pages/forgotpassword');
-});
+app.get('/reset', resetController.resetPassword);
+
+app.get('/posts', postController.getPosts);
+app.post('/posts', postController.addPost);
+
+app.get('/groups', groupController.getGroups);
+app.post('/groups', groupController.addGroups);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}...`);
