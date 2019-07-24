@@ -13,7 +13,7 @@ function userLogin (req, res) {
         return console.log(err);
       } else {
         // console.log(results);
-        res.json(results);
+        res.render('pages/login');
       }
     });
   } else {
@@ -24,7 +24,7 @@ function userLogin (req, res) {
         return console.log(err);
       } else {
         // console.log(results);
-        res.header('user', results).end();
+        res.render('pages/login');
       }
     });
   }
