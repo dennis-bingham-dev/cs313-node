@@ -13,7 +13,8 @@ function userLogin (req, res) {
         return console.log(err);
       } else {
         // console.log(results);
-        res.render('pages/login');
+        res.header('auth-token', results);
+        res.render('pages/home');
       }
     });
   } else {
@@ -24,7 +25,8 @@ function userLogin (req, res) {
         return console.log(err);
       } else {
         // console.log(results);
-        res.render('pages/login');
+        res.header('auth-token', results);
+        res.render('pages/home');
       }
     });
   }

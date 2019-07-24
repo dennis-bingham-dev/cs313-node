@@ -19,7 +19,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/home', (req, res) => {
-  res.send('user has made it to home screen.');
+  res.render('pages/home');
+});
+
+app.get('/account', (req, res) => {
+  res.send('User account accessed');
 });
 
 app.get('/signup', registerController.getRegistered);
